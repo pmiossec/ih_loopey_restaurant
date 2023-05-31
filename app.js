@@ -11,12 +11,12 @@ app.set("view engine", "hbs"); // set hbs package as template engine
 
 app.get("/", (request, res, next) => {
     console.log("home page...", request.path, request.baseUrl);
-    res.sendFile(__dirname + `/views/home.html`);
+    res.render("home");
 });
 
 app.get("/contact", (request, res, next) => {
     // console.log("home page...", request.path, request.baseUrl);
-    res.sendFile(__dirname + "/views/contact.html");
+    res.render("contact");
 });
 
 
