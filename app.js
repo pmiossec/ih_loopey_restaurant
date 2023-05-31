@@ -16,7 +16,7 @@ app.get("/contact", (request, response, next) => {
 });
 
 app.get("/pizzas/margarita", (request, response, next) => {
-    response.send("page for margarita");
+    response.send("Contrary to what Emily said, 🍕 margarita 🍕 is better 🤤");
 });
 
 app.get("/pizzas/veggie", (request, response, next) => {
