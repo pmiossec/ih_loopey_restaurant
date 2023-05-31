@@ -5,26 +5,54 @@ const app = express();
 
 app.use(express.static('public')); // Make everything inside of public/ available
 
-app.get("/", (request, response, next) => {
+app.set("views", __dirname + "/views"); // creates an absolute path pointing to a folder called "views"
+
+app.set("view engine", "hbs"); // set hbs package as template engine
+
+app.get("/", (request, res, next) => {
     console.log("home page...", request.path, request.baseUrl);
-    response.sendFile(__dirname + `/views/home.html`);
+    res.sendFile(__dirname + `/views/home.html`);
 });
 
-app.get("/contact", (request, response, next) => {
+app.get("/contact", (request, res, next) => {
     // console.log("home page...", request.path, request.baseUrl);
-    response.sendFile(__dirname + "/views/contact.html");
+    res.sendFile(__dirname + "/views/contact.html");
 });
 
-app.get("/pizzas/margarita", (request, response, next) => {
-    response.send("Contrary to what Emily said, 🍕 margarita 🍕 is better 🤤");
+
+app.get("/pizzas/margarita", (request, res, next) => {
+    const dataMargarita = {
+        title: 'Pizza Margarita',
+        price: 12,
+        recommendedDrink: 'beer',
+        imageFile: 'pizza-margarita.jpg',
+        ingredients: ['mozzarella', 'tomato sauce', 'basilicum'],
+      };
+
+    res.render("product", dataMargarita);
 });
 
-app.get("/pizzas/veggie", (request, response, next) => {
-    response.send("page for veggie");
+app.get("/pizzas/veggie", (request, res, next) => {
+  const dataVeggie = {
+    title: 'Veggie Pizza',
+    price: 15,
+    recommendedDrink: 'power smoothie',
+    imageFile: 'pizza-veggie.jpg',
+    ingredients: ['cherry tomatoes', 'basilicum', 'Olives'],
+  };
+
+  res.render("product", dataVeggie);
 });
 
-app.get("/pizzas/seafood", (request, response, next) => {
-    response.send("page for seafood");
+app.get("/pizzas/seafood", (request, res, next) => {
+  const dataSeafood = {
+    title: 'Seafood Pizza',
+    price: 20,
+    recommendedDrink: 'white wine',
+    imageFile: 'pizza-seafood.jpg',
+    ingredients: ['tomato sauce', 'garlic', 'prawn'],
+  };
+  res.render("product", dataSeafood);
 });
 
 app.listen(4000, () => { console.log("Listening on http://localhost:4000/ ...")});
