@@ -9,4 +9,14 @@
 <h1>Hello 🍕 {{title}}🍕</h1>
 <h2>💵Price {{price}}€</h2>
 
-<img src="/images/{{imageFile}}" alt="">
+<img src="/images/{{imageFile}}" alt="{{title}}">
+
+<p> Recommended Drink: {{recommendedDrink}}</p>
+<p> Ingredients:
+    
+    <ul>
+    {{#each ingredients}}
+        <li>{{this}}</li>
+    {{/each}}
+    </ul>
+</p>
